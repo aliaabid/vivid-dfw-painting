@@ -29,7 +29,9 @@ function initNav() {
 
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
-      mobileMenu.classList.add('open');
+      // Set display:flex first, then on next frame add .open so opacity transition fires
+      mobileMenu.style.display = 'flex';
+      requestAnimationFrame(() => mobileMenu.classList.add('open'));
       document.body.style.overflow = 'hidden';
     });
   }
@@ -40,6 +42,10 @@ function initNav() {
   function closeMobile() {
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
+    // After fade-out, hide with display:none so it's fully out of the render tree
+    setTimeout(() => {
+      if (!mobileMenu.classList.contains('open')) mobileMenu.style.display = 'none';
+    }, 260);
   }
 
   const heroBg = document.querySelector('.hero-bg');
@@ -55,17 +61,27 @@ function initScrollAnimations() {
   const els = document.querySelectorAll('.fade-up');
   if (!els.length) return;
 
+  // threshold:0 fires the moment any pixel of the element enters the viewport —
+  // much more reliable on mobile than 0.12 which can silently miss elements.
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const delay = entry.target.dataset.delay || 0;
         setTimeout(() => entry.target.classList.add('visible'), Number(delay));
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
   els.forEach(el => observer.observe(el));
+
+  // Hard fallback: if IntersectionObserver silently fails (rare on some mobile
+  // WebViews), reveal everything after 1.5 s so the page is never stuck blank.
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 1500);
 }
 
 /* ---- FAQ accordion ---- */

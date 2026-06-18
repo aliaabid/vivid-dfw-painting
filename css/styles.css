@@ -157,6 +157,11 @@ p { color: var(--text-secondary); line-height: 1.75; }
   opacity: 1;
   transform: translateY(0);
 }
+/* On mobile, skip the translate so the observer's position calculations are exact */
+@media (max-width: 768px) {
+  .fade-up            { transform: none; }
+  .fade-up.visible    { transform: none; }
+}
 
 /* ============================================================
    NAVIGATION
@@ -271,8 +276,7 @@ p { color: var(--text-secondary); line-height: 1.75; }
 .nav.scrolled .nav-hamburger span { background: var(--navy); }
 
 .nav-mobile {
-  display: flex;              /* must be flex always — display:none blocks opacity */
-  visibility: hidden;
+  display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: var(--navy-dark);
@@ -283,10 +287,9 @@ p { color: var(--text-secondary); line-height: 1.75; }
   gap: 32px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--transition), visibility var(--transition);
+  transition: opacity var(--transition);
 }
 .nav-mobile.open {
-  visibility: visible;
   opacity: 1;
   pointer-events: all;
 }

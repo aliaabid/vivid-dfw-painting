@@ -152,7 +152,6 @@ if (estimateForm) {
         <p style="max-width:400px;margin:0 auto 8px;">Thank you! Our estimating team will review your project details and provide a detailed estimate within 24–48 hours.</p>
         <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">We'll reach out via phone and email with your estimate.</p>
       </div>`;
-    }, 1200);
   });
 }
 

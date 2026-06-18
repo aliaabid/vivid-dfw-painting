@@ -58,11 +58,17 @@ function initNav() {
 
 /* ---- Scroll animations ---- */
 function initScrollAnimations() {
+  // Mobile never animates — content is always visible via CSS default.
+  if (window.innerWidth <= 768) return;
+
   const els = document.querySelectorAll('.fade-up');
   if (!els.length) return;
 
-  // threshold:0 fires the moment any pixel of the element enters the viewport —
-  // much more reliable on mobile than 0.12 which can silently miss elements.
+  // Opt the page into animation AFTER elements exist in DOM.
+  // This is the only moment content becomes opacity:0 — so if anything
+  // below fails, the CSS default (opacity:1) is already the fallback.
+  document.documentElement.classList.add('js-animate');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -71,17 +77,9 @@ function initScrollAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05 });
 
   els.forEach(el => observer.observe(el));
-
-  // Hard fallback: if IntersectionObserver silently fails (rare on some mobile
-  // WebViews), reveal everything after 1.5 s so the page is never stuck blank.
-  setTimeout(() => {
-    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
-      el.classList.add('visible');
-    });
-  }, 1500);
 }
 
 /* ---- FAQ accordion ---- */

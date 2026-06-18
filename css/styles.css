@@ -148,19 +148,21 @@ p { color: var(--text-secondary); line-height: 1.75; }
 }
 
 /* ---- Scroll animation ---- */
-.fade-up {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* On mobile, skip the translate so the observer's position calculations are exact */
-@media (max-width: 768px) {
-  .fade-up            { transform: none; }
-  .fade-up.visible    { transform: none; }
+/* Default: content always visible — animation is an enhancement, not a requirement */
+.fade-up { opacity: 1; transform: none; }
+
+/* Only animate when JS has confirmed it's running (adds .js-animate to <html>) */
+/* Desktop only — mobile never hides content */
+@media (min-width: 769px) {
+  .js-animate .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .js-animate .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ============================================================

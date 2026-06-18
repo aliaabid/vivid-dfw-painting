@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Vivid DFW Painting — Professional Residential Painters",
   "scripts": {
-    "start": "serve . -l $PORT"
+    "start": "node server.js"
   },
   "dependencies": {
+    "express": "^5.2.1",
+    "pg": "^8.21.0",
     "serve": "^14.2.4"
   }
 }

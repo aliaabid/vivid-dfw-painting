@@ -114,19 +114,28 @@ function initUploadZone() {
 /* ---- Estimate form ---- */
 const estimateForm = document.getElementById('estimateForm');
 if (estimateForm) {
-  estimateForm.addEventListener('submit', e => {
+  estimateForm.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = estimateForm.querySelector('[type="submit"]');
     btn.disabled = true;
     btn.textContent = 'Submitting…';
-    setTimeout(() => {
-      estimateForm.innerHTML = `
-        <div style="text-align:center;padding:48px 24px;">
-          <div style="width:72px;height:72px;background:rgba(196,154,58,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--gold);font-size:2rem;">✓</div>
-          <h3 style="font-family:var(--font-heading);font-size:1.6rem;margin-bottom:12px;">Request Received</h3>
-          <p style="max-width:400px;margin:0 auto 8px;">Thank you! Our estimating team will review your project details and provide a detailed estimate within 24–48 hours.</p>
-          <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">We'll reach out via phone and email with your estimate.</p>
-        </div>`;
+
+    const data = Object.fromEntries(new FormData(estimateForm));
+    try {
+      await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: 'form', ...data }),
+      });
+    } catch (_) { /* still show success even if network glitch */ }
+
+    estimateForm.innerHTML = `
+      <div style="text-align:center;padding:48px 24px;">
+        <div style="width:72px;height:72px;background:rgba(196,154,58,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--gold);font-size:2rem;">✓</div>
+        <h3 style="font-family:var(--font-heading);font-size:1.6rem;margin-bottom:12px;">Request Received</h3>
+        <p style="max-width:400px;margin:0 auto 8px;">Thank you! Our estimating team will review your project details and provide a detailed estimate within 24–48 hours.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">We'll reach out via phone and email with your estimate.</p>
+      </div>`;
     }, 1200);
   });
 }
@@ -224,6 +233,21 @@ function initChatWidget() {
   function handleContactSubmit(data) {
     answers.contact = data;
     step = 6;
+    fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source:       'chat',
+        name:         data.name,
+        phone:        data.phone,
+        email:        data.email,
+        address:      data.address,
+        project_type: answers.service   || '',
+        home_size:    answers.size      || '',
+        timeline:     answers.timeline  || '',
+        notes:        answers.details   || '',
+      }),
+    }).catch(() => {});
     showTyping(1000).then(() => {
       clearInputArea();
       addSuccess(data.name);

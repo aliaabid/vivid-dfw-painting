@@ -15,11 +15,13 @@ function initNav() {
   const nav = document.querySelector('.nav');
   if (!nav) return;
 
-  const onScroll = () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  // Only drive scroll-state on the hero page; inner pages are always scrolled
+  const hasHero = !!document.querySelector('.hero');
+  if (hasHero) {
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
   const hamburger = nav.querySelector('.nav-hamburger');
   const mobileMenu = document.querySelector('.nav-mobile');

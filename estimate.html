@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Free Painting Estimate | Vivid DFW Painting</title>
+  <meta name="description" content="Request a free residential painting estimate in Dallas–Fort Worth. Upload photos, describe your project, and receive a detailed written estimate within 24–48 hours." />
+  <link rel="canonical" href="https://vividdfw.com/estimate.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" style="color:var(--navy);">
+      Vivid<span>DFW</span> Painting
+      <small>Professional · Reliable · Trusted</small>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services" class="nav-link">Services</a></li>
+      <li><a href="index.html#process"  class="nav-link">Our Process</a></li>
+      <li><a href="about.html"          class="nav-link">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="estimate.html" class="nav-cta btn">Get Your Free Estimate</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu">
+      <span style="background:var(--navy)"></span>
+      <span style="background:var(--navy)"></span>
+      <span style="background:var(--navy)"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile">
+  <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+  <a href="index.html#services" class="nav-link">Services</a>
+  <a href="index.html#process"  class="nav-link">Our Process</a>
+  <a href="about.html"          class="nav-link">About</a>
+  <a href="estimate.html" class="btn btn-primary btn-lg">Get Your Free Estimate</a>
+</div>
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner fade-up">
+      <span class="eyebrow">No Commitment Required</span>
+      <h1>Get Your Free Painting Estimate</h1>
+      <p>Upload photos and provide a few project details. Our team will review everything and provide a detailed estimate within 24–48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ESTIMATE FORM
+     ============================================================ -->
+<section class="estimate-section" id="upload">
+  <div class="container">
+    <div class="estimate-layout">
+
+      <!-- FORM -->
+      <div class="estimate-form-wrap fade-up">
+        <h3 style="font-size:1.3rem;margin-bottom:6px;">Tell Us About Your Project</h3>
+        <p style="font-size:0.875rem;margin-bottom:32px;">All fields marked with <span style="color:var(--gold);font-weight:600;">*</span> are required.</p>
+
+        <form id="estimateForm" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name <span>*</span></label>
+              <input type="text" class="form-control" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number <span>*</span></label>
+              <input type="tel" class="form-control" name="phone" placeholder="(214) 000-0000" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address <span>*</span></label>
+            <input type="email" class="form-control" name="email" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label>Property Address</label>
+            <input type="text" class="form-control" name="address" placeholder="1234 Maple Street, Frisco, TX 75034" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Project Type <span>*</span></label>
+              <select class="form-control" name="project_type" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>Interior Painting</option>
+                <option>Exterior Painting</option>
+                <option>Cabinet Painting</option>
+                <option>Trim &amp; Doors</option>
+                <option>Drywall Repair</option>
+                <option>Whole Home Repaint</option>
+                <option>Multiple Services</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Desired Timeline</label>
+              <select class="form-control" name="timeline">
+                <option value="" disabled selected>When do you need it?</option>
+                <option>As soon as possible</option>
+                <option>Within 1 month</option>
+                <option>1–3 months out</option>
+                <option>Just getting a quote</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Project Photos <span style="font-weight:400;color:var(--text-muted);">(recommended — helps us provide a more accurate estimate)</span></label>
+            <div class="upload-zone" id="uploadZone">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="16 16 12 12 8 16"/>
+                <line x1="12" y1="12" x2="12" y2="21"/>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+              </svg>
+              <p style="margin:0;"><strong>Click to upload</strong> or drag and drop</p>
+              <span>JPEG, PNG, HEIC up to 20MB each</span>
+            </div>
+            <input type="file" id="fileInput" accept="image/*" multiple />
+            <div class="upload-preview" id="uploadPreview"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea class="form-control" name="notes" placeholder="Tell us more — room sizes, current paint conditions, color preferences, concerns, or anything else that helps us understand your project…" rows="5"></textarea>
+          </div>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Submit Estimate Request
+            </button>
+          </div>
+
+          <div class="form-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Our estimating team will review your project details and provide a detailed written estimate within <strong>24–48 hours</strong>. We do not generate instant pricing — every estimate is carefully reviewed by our team.</span>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="estimate-sidebar fade-up" data-delay="100">
+
+        <div class="sidebar-card">
+          <h4>What Happens Next</h4>
+
+          <div class="sidebar-trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p><strong>Within 24–48 hours</strong><br>Our team reviews your photos and project details.</p>
+          </div>
+
+          <div class="sidebar-trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <p><strong>Detailed written estimate</strong><br>Itemized scope, materials, and clear pricing.</p>
+          </div>
+
+          <div class="sidebar-trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12A19.79 19.79 0 0 1 1.73 3.4 2 2 0 0 1 3.7 1.4h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.04a16 16 0 0 0 6 6"/></svg>
+            <p><strong>We reach out directly</strong><br>To discuss scope and answer any questions.</p>
+          </div>
+
+          <div class="sidebar-trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <p><strong>Schedule at your pace</strong><br>No pressure — choose a start date that works for you.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-reviews">
+          <h5 style="font-size:0.85rem;font-weight:700;color:var(--text-primary);margin-bottom:16px;">Recent Reviews</h5>
+
+          <div class="sidebar-mini-review">
+            <div class="stars" style="margin-bottom:8px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p>"Estimate was detailed and exactly what we paid at the end. No surprises."</p>
+            <strong>— Sarah M., Plano TX</strong>
+          </div>
+
+          <div class="sidebar-mini-review">
+            <div class="stars" style="margin-bottom:8px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p>"They showed up on time every day and cleaned up completely each evening."</p>
+            <strong>— Mark D., Southlake TX</strong>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border:none;padding-top:0;">
+      <span>&copy; 2025 Vivid DFW Painting. All rights reserved.</span>
+      <a href="index.html">← Back to Home</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Chat Widget -->
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-tooltip">Need help? Chat with us →</div>
+  <div class="chat-window">
+    <div class="chat-header">
+      <div class="chat-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="chat-header-info">
+        <strong>Vivid Estimate Assistant</strong>
+        <span class="status">Online now</span>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-footer">
+      <p>Vivid DFW Painting &middot; No instant pricing — reviewed by our team</p>
+    </div>
+  </div>
+  <button class="chat-toggle" aria-label="Open chat">
+    <svg class="chat-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg class="chat-close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <div class="chat-badge">1</div>
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

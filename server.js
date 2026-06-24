@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const path = require('path');
+const https = require('https');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +31,58 @@ pool.query(`
   )
 `).catch(err => console.error('DB init:', err.message));
 
+/* ---- HubSpot contact push ---- */
+async function pushToHubSpot({ name, phone, email, address, project_type, home_size, timeline, notes }) {
+  const token = process.env.HUBSPOT_TOKEN;
+  if (!token) return;
+
+  const nameParts  = (name || '').trim().split(/\s+/);
+  const firstname  = nameParts[0] || '';
+  const lastname   = nameParts.slice(1).join(' ') || '';
+
+  const noteLines = [
+    project_type && `Project: ${project_type}`,
+    home_size    && `Home size: ${home_size}`,
+    timeline     && `Timeline: ${timeline}`,
+    notes        && `Notes: ${notes}`,
+    address      && `Address: ${address}`,
+  ].filter(Boolean).join('\n');
+
+  const body = JSON.stringify({
+    properties: {
+      firstname,
+      lastname,
+      phone:        phone   || '',
+      email:        email   || '',
+      address:      address || '',
+      hs_lead_source: 'WEBSITE',
+      message:      noteLines,
+    },
+  });
+
+  return new Promise((resolve) => {
+    const req = https.request({
+      hostname: 'api.hubapi.com',
+      path: '/crm/v3/objects/contacts',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+      },
+    }, (res) => {
+      res.resume();
+      res.on('end', resolve);
+    });
+    req.on('error', (err) => {
+      console.error('HubSpot push error:', err.message);
+      resolve();
+    });
+    req.write(body);
+    req.end();
+  });
+}
+
 /* ---- POST /api/submit ---- */
 app.post('/api/submit', async (req, res) => {
   const { source, name, phone, email, address, project_type, home_size, timeline, notes } = req.body;
@@ -50,6 +103,8 @@ app.post('/api/submit', async (req, res) => {
         notes        || '',
       ]
     );
+    // Fire-and-forget to HubSpot — don't block the response
+    pushToHubSpot({ name, phone, email, address, project_type, home_size, timeline, notes });
     res.json({ ok: true });
   } catch (err) {
     console.error('Submit error:', err.message);

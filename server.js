@@ -52,11 +52,10 @@ async function pushToHubSpot({ name, phone, email, address, project_type, home_s
     properties: {
       firstname,
       lastname,
-      phone:        phone   || '',
-      email:        email   || '',
-      address:      address || '',
-      hs_lead_source: 'WEBSITE',
-      message:      noteLines,
+      phone:   phone   || '',
+      email:   email   || '',
+      address: address || '',
+      message: noteLines,
     },
   });
 

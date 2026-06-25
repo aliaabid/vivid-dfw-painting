@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://vividdfw.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://vividdfw.com/estimate.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vividdfw.com/services/interior-painting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vividdfw.com/services/exterior-painting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vividdfw.com/services/cabinet-painting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vividdfw.com/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://vividdfw.com/locations/dallas-tx.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vividdfw.com/locations/fort-worth-tx.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vividdfw.com/locations/plano-tx.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vividdfw.com/locations/frisco-tx.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vividdfw.com/locations/mckinney-tx.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+</urlset>
